@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: { { .Release.Name } }-mongodb-deployment
-  namespace: { { .Values.namespace } }
+  name: {{ .Release.Name }}-mongodb-deployment
+  namespace: {{ .Values.namespace }}
 spec:
-  replicas: { { .Values.mongodb.replicas } }
+  replicas: {{ .Values.mongodb.replicas }}
   selector:
     matchLabels:
-      app: { { .Values.mongodb.name } }
+      app: {{ .Values.mongodb.name }}
   template:
     metadata:
       labels:
-        app: { { .Values.mongodb.name } }
+        app: {{ .Values.mongodb.name }}
     spec:
       containers:
-        - name: { { .Values.mongodb.name } }
+        - name: {{ .Values.mongodb.name }}
           image: "{{ .Values.mongodb.image.repository }}:{{ .Values.mongodb.image.tag }}"
           ports:
-            - containerPort: { { .Values.mongodb.port } }
+            - containerPort: {{ .Values.mongodb.port }}
           envFrom:
             - configMapRef:
-                name: { { .Values.configMap.name } }
+                name: {{ .Values.configMap.name }}

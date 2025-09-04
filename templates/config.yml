@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: { { .Release.Name } }-configMap
+  name: {{ .Release.Name }}-configMap
 data:
-  MONGO_INITDB_DATABASE: { { .Values.configMap.databse } }
-  PORT: { { .Values.user.port } }
+  MONGO_INITDB_DATABASE: {{ .Values.configMap.database }}
+  PORT: "{{ .Values.user.port }}"

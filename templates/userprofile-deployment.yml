@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: { { .Release.Name } }-useprofile-deployment
-  namespace: { { .Values.namespace } }
+  name: {{ .Release.Name }}-useprofile-deployment
+  namespace: {{ .Values.namespace }}
 spec:
-  replicas: { { .Values.user.replicas } }
+  replicas: {{ .Values.user.replicas }}
   selector:
     matchLabels:
-      app: { { .Values.user.app } }
+      app: {{ .Values.user.app }}
   template:
     metadata:
       labels:
-        app: { { .Values.user.app } }
+        app: {{ .Values.user.app }}
     spec:
       containers:
-        - name: { { .Values.user.names.container } }
+        - name: {{ .Values.user.names.container }}
           image: "{{ .Values.user.image.repository }}:{{ .Values.user.image.tag }}"
           ports:
-            - containerPort: { { .Values.user.port } } # Change to match your app's port
+            - containerPort: {{ .Values.user.port }} # Change to match your app's port
           envFrom:
             - configMapRef:
-                name: { { .Values.configMap.name } }
+                name: {{ .Values.configMap.name }}
             - secretRef:
-                name: { { .Values.secret.name } }
+                name: {{ .Values.secret.name }}

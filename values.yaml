@@ -23,4 +23,17 @@ secret:
   email: Y2hhZ2FudHl0ZWphMjUwMkBnbWFpbC5jb20=
   pass: eXhvcSBianVrIHJkbnQgYWx6cA==
 configMap:
-  databse: myDatabase
+  database: myDatabase
+
+storageClass:
+  provisioner: ebs.csi.aws.com
+  volBind: WaitForFirstConsumer
+  reclaimPolicy: Delete
+  type: gp2
+pvc:
+  accessMode: ReadWriteOnce
+  storage: 1Gi
+ingress:
+  className: nginx
+  path: /prince
+  pathType: Prefix
