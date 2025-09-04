@@ -20,6 +20,6 @@ spec:
             - containerPort: {{ .Values.user.port }} # Change to match your app's port
           envFrom:
             - configMapRef:
-                name: {{ .Values.configMap.name }}
+                name: {{ .Release.Name }}-configMap
             - secretRef:
-                name: {{ .Values.secret.name }}
+                name: {{ .Release.Name }}-secret
