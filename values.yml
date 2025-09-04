@@ -1,5 +1,6 @@
 namespace: prince
 mongodb:
+  name: mongodb
   port: 27017
   replicas: 1
   image:
