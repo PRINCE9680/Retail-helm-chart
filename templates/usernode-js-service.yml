@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: { { .Release.Name } }-usernode-js-service
+  namespace: { { .Values.namespace } }
+spec:
+  type: { { .Values.user.type } } # Use NodePort if LoadBalancer is not supported
+  ports:
+    - port: { { .Values.user.port } }
+      targetPort: { { .Values.user.port } }
+      protocol: TCP
+  selector:
+    app: { { .Values.user.app } }
